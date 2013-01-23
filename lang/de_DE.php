@@ -24,6 +24,8 @@ $lang['de_DE']['SiteInfo']['MOBILE'] = 'Mobil';
 $lang['de_DE']['SiteInfo']['EMAIL'] = 'E-Mail';
 $lang['de_DE']['SiteInfo']['WEBSITE'] = 'Internet';
 $lang['de_DE']['SiteInfo']['VATNUMBER'] = 'USt-IdNr. ';
+$lang['de_DE']['SiteInfo']['COMMERCIALREGISTER'] = 'Handelsregister ';
+
 
 $lang['de_DE']['SiteInfo']['FACEBOOKTABTITEL'] = 'facebook';
 $lang['de_DE']['SiteInfo']['FACEBOOK_APPID'] = 'App- ID';

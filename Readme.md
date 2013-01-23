@@ -8,7 +8,7 @@ SilverStripe 2.4.x
 
 ##Overview
 
-A module for Silverstripe CMS to provide some further informations about the owner of a website.
+A module for Silverstripe CMS to provide further informations about the owner of a website.
 
   - Company1
   - Company2
@@ -25,6 +25,7 @@ A module for Silverstripe CMS to provide some further informations about the own
   - Email
   - Website
   - Vatnumber
+  - Commercial register
 
 
 ##Related Modules

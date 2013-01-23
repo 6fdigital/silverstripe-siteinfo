@@ -33,7 +33,8 @@ class SiteInfo extends DataObjectDecorator
 				"Mobile" => "Varchar(255)",
 				"Email" => "Varchar(255)",
 				"Website" => "Varchar(255)",
-				"Vatnumber" => "Varchar(255)"
+				"Vatnumber" => "Varchar(255)",
+				"CommercialRegister" => "Varchar(255)"
 			)
 		);
 	}
@@ -63,6 +64,7 @@ class SiteInfo extends DataObjectDecorator
 		$fields->addFieldToTab("Root." . _t('MODULETABTITEL', 'Siteinfo'), new TextField("Email", _t('SiteInfo.EMAIL', 'E-Mail')));
 		$fields->addFieldToTab("Root." . _t('MODULETABTITEL', 'Siteinfo'), new TextField("Website", _t('SiteInfo.WEBSITE', 'Website')));
 		$fields->addFieldToTab("Root." . _t('MODULETABTITEL', 'Siteinfo'), new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')));
+		$fields->addFieldToTab("Root." . _t('MODULETABTITEL', 'Siteinfo'), new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Vat Number')));
 	}
 }
 
