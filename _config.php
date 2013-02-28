@@ -1,7 +1,7 @@
 <?php 
 
 
-// add our extended site config
-Object::add_extension( "SiteConfig", "SiteInfo" );
+// add our extension to the site config
+Object::add_extension("SiteConfig", "SiteInfo");
 
 ?>
