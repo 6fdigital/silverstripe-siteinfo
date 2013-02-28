@@ -1,12 +1,12 @@
 {
-    "name": "denkfabrik-neueMedien/silverstripe-siteinfo",
+    "name": "denkfabrik-neue-medien/silverstripe-siteinfo",
     "description": "A module for Silverstripe CMS to provide some further informations about the owner of a website.",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "contact", "contact information"],
     "authors": [
     {
         "name": "Marco Kernler",
-        "email": "kernler.marco@gmail.com"
+        "email": "marco.kernler@denkfabrik-neueMedien.de"
     }
     ],
 
