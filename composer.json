@@ -14,5 +14,9 @@
     {
         "silverstripe/framework": "3.*",
         "composer/installers": "*"
+    },
+    "extra":
+    {
+        "installer-name": "siteinfo"
     }
 }
