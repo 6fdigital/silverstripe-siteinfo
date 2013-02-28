@@ -1,14 +1,12 @@
 #SiteInfo Module
 
-Note: This module currently are not available for the 3.x.x Release of the CMS
-
 ##Requirements
 
-SilverStripe 2.4.x
+SilverStripe 3.0
 
 ##Overview
 
-A module for Silverstripe CMS to provide further informations about the owner of a website.
+A module for the Silverstripe CMS to provide further informations about the owner of a website.
 
   - Company1
   - Company2

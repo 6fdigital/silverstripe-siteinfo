@@ -1,5 +1,5 @@
 {
-    "name": "marcokernler/silverstripe-siteinfo",
+    "name": "denkfabrik-neueMedien/silverstripe-siteinfo",
     "description": "A module for Silverstripe CMS to provide some further informations about the owner of a website.",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "contact", "contact information"],
