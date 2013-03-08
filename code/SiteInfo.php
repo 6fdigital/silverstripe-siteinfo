@@ -56,7 +56,7 @@ class SiteInfo extends DataExtension
 		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Email", _t('SiteInfo.EMAIL', 'E-Mail')));
 		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Website", _t('SiteInfo.WEBSITE', 'Website')));
 		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Vat Number')));
+		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')));
 	}
 }
 
