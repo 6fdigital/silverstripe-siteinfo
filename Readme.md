@@ -22,6 +22,7 @@ A module for the Silverstripe CMS to provide further informations about the owne
   - Mobile
   - Email
   - Website
+  - Opening times
   - Vatnumber
   - Commercial register
 
