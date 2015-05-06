@@ -13,7 +13,7 @@ class SiteInfo extends DataExtension
 	 * 
 	 * 	@return	Array	A list of additional fields
 	 */
-	public static $db = array
+    private static $db = array
 	(
 		"Company1" => "Varchar(255)",
 		"Company2" => "Varchar(255)",
@@ -33,6 +33,9 @@ class SiteInfo extends DataExtension
 		"Vatnumber" => "Varchar(255)",
 		"CommercialRegister" => "Varchar(255)"
 	);
+
+
+    // - - -
 	
 	
 	/**
