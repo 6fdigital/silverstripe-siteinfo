@@ -2,7 +2,7 @@
 
 ##Requirements
 
-SilverStripe 3.0
+SilverStripe 3.2+
 
 ##Overview
 
