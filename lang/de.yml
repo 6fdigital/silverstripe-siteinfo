@@ -35,3 +35,13 @@ de:
     TUMBLERLINK: "Tumbler Link"
     INSTAGRAMLINK: "Instagram Link"
     FIVEHUNDREDPXLINK: "500px Link"
+    TYPEEVENT: "Event"
+    TYPEORGANIZATION: "Organisation"
+    TYPEPERSON: "Person"
+    TYPELOCALBUSINESS: "Lokales Geschäft/Ort/Restaurant"
+  SchemaOrgAddress:
+    ADDRESS: "Adresse"
+    PHONE: "Telefon"
+    FAX: "Fax"
+    EMAIL: "E-Mail"
+    WEBSITE: "Website"

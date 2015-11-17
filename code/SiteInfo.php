@@ -43,8 +43,12 @@ class SiteInfo extends DataExtension
         "LinkedInLink" => "Varchar(255)",
         "TumblerLink" => "Varchar(255)",
         "InstagramLink" => "Varchar(255)",
-        "FivehundredPXLink" => "Varchar(255)"
+        "FivehundredPXLink" => "Varchar(255)",
+        "Type" => "Enum('event, organization, person, localbusiness', 'organization')"
 	);
+
+
+
 
 
     // - - -
@@ -60,8 +64,11 @@ class SiteInfo extends DataExtension
         //
         $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
 
+
+
         //
         $tglMisc = new ToggleCompositeField("Misc", _t('SiteInfo.MISCTABTITLE', 'Misc'), array(
+            new DropdownField("Type", _t("SiteInfo.TYPE", "Type"), $this->_typesNice()),
             new TextField("Company1", _t('SiteInfo.COMPANY1', 'Company 1' )),
             new TextField("Company2", _t('SiteInfo.COMPANY2', 'Company 2' )),
             new TextField("Firstname", _t('SiteInfo.FIRSTNAME', 'Firstname')),
@@ -112,4 +119,25 @@ class SiteInfo extends DataExtension
         $f->addFieldToTab($mainTabTitle, $tglContact);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
 	}
+
+
+    // - - -
+
+
+    /**
+     * Add translated labels for the dropdown field
+     *
+     * @return array
+     */
+    protected function _typesNice() {
+        $enumValues = singleton("SiteConfig")->dbObject("Type")->enumValues();
+
+        $values = array();
+
+        foreach($enumValues as $enumValue) {
+            $values[$enumValue] = _t("SiteInfo.TYPE" . strtoupper($enumValue));
+        }
+
+        return $values;
+    }
 }
