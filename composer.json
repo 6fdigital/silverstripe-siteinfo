@@ -4,18 +4,15 @@
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "contact", "contact information"],
     "authors": [
-    {
-        "name": "Marco Kernler",
-        "email": "marco.kernler@denkfabrik-neueMedien.de"
-    }
+        {
+            "name": "Marco Kernler",
+            "email": "marco.kernler@denkfabrik-neueMedien.de"
+        }
     ],
-
-    "require":
-    {
-        "silverstripe/cms": "~3.1"
+    "require": {
+        "silverstripe/cms": ">=3.2"
     },
-    "extra":
-    {
+    "extra": {
         "installer-name": "siteinfo"
     }
 }

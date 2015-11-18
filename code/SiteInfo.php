@@ -13,8 +13,7 @@ class SiteInfo extends DataExtension
 	 * 
 	 * 	@return	Array	A list of additional fields
 	 */
-    private static $db = array
-	(
+    private static $db = array (
 		"Company1" => "Varchar(255)",
 		"Company2" => "Varchar(255)",
 		"Firstname" => "Varchar(255)",
@@ -23,16 +22,33 @@ class SiteInfo extends DataExtension
 		"StreetNumber" => "Varchar(255)",
 		"Zip" => "Varchar(255)",
 		"City" => "HTMLText",
-		"Country" => "Varchar(255)",
+		"Country" => "Varchar(2)",
 		"Phone" => "Varchar(255)",
 		"Fax" => "Varchar(255)",
 		"Mobile" => "Varchar(255)",
 		"Email" => "Varchar(255)",
 		"Website" => "Varchar(255)",
-        "OpeningTimes" => "Varchar(255)",
+        "OpeningTimes" => "HTMLText",
 		"Vatnumber" => "Varchar(255)",
-		"CommercialRegister" => "Varchar(255)"
+		"CommercialRegister" => "Varchar(255)",
+        "Description1" => "HTMLText",
+        "Description2" => "HTMLText",
+        "FacebookLink" => "Varchar(255)",
+        "TwitterLink" => "Varchar(255)",
+        "GooglePlusLink" => "Varchar(255)",
+        "PinterestLink" => "Varchar(255)",
+        "YoutubeLink" => "Varchar(255)",
+        "VimeoLink" => "Varchar(255)",
+        "XINGLink" => "Varchar(255)",
+        "LinkedInLink" => "Varchar(255)",
+        "TumblerLink" => "Varchar(255)",
+        "InstagramLink" => "Varchar(255)",
+        "FivehundredPXLink" => "Varchar(255)",
+        "Type" => "Enum('event, organization, person, localbusiness', 'organization')"
 	);
+
+
+
 
 
     // - - -
@@ -43,26 +59,85 @@ class SiteInfo extends DataExtension
 	 * 
 	 * 	@param $fields The list of existing fields
 	 */
-	public function updateCMSFields(FieldList $fields)
-	{
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Company1", _t('SiteInfo.COMPANY1', 'Company 1' )));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Company2", _t('SiteInfo.COMPANY2', 'Company 2' )));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Firstname", _t('SiteInfo.FIRSTNAME', 'Firstname')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Surname",_t('SiteInfo.SURNAME', 'Surname')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Street", _t('SiteInfo.STREET', 'Street')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("StreetNumber", _t('SiteInfo.STREETNUMBER', 'Steetnumber')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("City", _t('SiteInfo.CITY', 'City')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Country", _t('SiteInfo.COUNTRY', 'Country')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Phone", _t('SiteInfo.PHONE', 'Phone')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Fax", _t('SiteInfo.FAX', 'Fax')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Mobile", _t('SiteInfo.MOBILE', 'Mobile')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Email", _t('SiteInfo.EMAIL', 'E-Mail')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Website", _t('SiteInfo.WEBSITE', 'Website')));
-        $fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Öffnungszeiten')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')));
-		$fields->addFieldToTab("Root." . _t('SiteInfo.MODULETABTITEL', 'Siteinfo'), new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')));
-	}
-}
+	public function updateCMSFields(FieldList $f) {
 
-?>
+        //
+        $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
+
+
+
+        //
+        $tglMisc = new ToggleCompositeField("Misc", _t('SiteInfo.MISCTABTITLE', 'Misc'), array(
+            new DropdownField("Type", _t("SiteInfo.TYPE", "Type"), $this->_typesNice()),
+            new TextField("Company1", _t('SiteInfo.COMPANY1', 'Company 1' )),
+            new TextField("Company2", _t('SiteInfo.COMPANY2', 'Company 2' )),
+            new TextField("Firstname", _t('SiteInfo.FIRSTNAME', 'Firstname')),
+            new TextField("Surname", _t('SiteInfo.SURNAME', 'Surname')),
+            new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')),
+            new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
+            new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Öffnungszeiten')),
+            new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
+            new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
+        ));
+
+        //
+        $tglAddress = new ToggleCompositeField("Address", _t('SiteInfo.ADDRESSTABTITLE', 'Address'), array(
+            new TextField("Street", _t('SiteInfo.STREET', 'Street')),
+            new TextField("StreetNumber", _t('SiteInfo.STREETNUMBER', 'Steetnumber')),
+            new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')),
+            new TextField("City", _t('SiteInfo.CITY', 'City')),
+            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'))
+        ));
+
+        //
+        $tglContact = new ToggleCompositeField("Contact", _t('SiteInfo.CONTACTTABTITLE', 'Contact'), array(
+            new TextField("Phone", _t('SiteInfo.PHONE', 'Phone')),
+            new TextField("Fax", _t('SiteInfo.FAX', 'Fax')),
+            new TextField("Mobile", _t('SiteInfo.MOBILE', 'Mobile')),
+            new TextField("Email", _t('SiteInfo.EMAIL', 'E-Mail')),
+            new TextField("Website", _t('SiteInfo.WEBSITE', 'Website'))
+        ));
+
+        //
+        $tglSocialMedia = new ToggleCompositeField("SocialMedia", _t('SiteInfo.SOCIALMEDIATABTITLE', 'Social Media'), array(
+            new TextField("FacebookLink", _t('SiteInfo.FACEBOOKLINK', 'Facebook Link')),
+            new TextField("TwitterLink", _t('SiteInfo.TWITTERLINK', 'Twitter Link')),
+            new TextField("GooglePlusLink", _t('SiteInfo.GOOGLEPLUSLINK', 'Google+ Link')),
+            new TextField("PinterestLink", _t('SiteInfo.PINTERESTLINK', 'Pinterest Link')),
+            new TextField("YoutubeLink", _t('SiteInfo.YOUTUBELINK', 'Youtube Link')),
+            new TextField("VimeoLink", _t('SiteInfo.VIMEOLINK', 'Vimeo Link')),
+            new TextField("XINGLink", _t('SiteInfo.XINGLINK', 'XING Link')),
+            new TextField("LinkedInLink", _t('SiteInfo.LINKEDINLINK', 'LinkedIn Link')),
+            new TextField("TumblerLink", _t('SiteInfo.TUMBLERLINK', 'Tumbler Link')),
+            new TextField("InstagramLink", _t('SiteInfo.INSTAGRAMLINK', 'Instagram Link')),
+            new TextField("FivehundredPXLink", _t('SiteInfo.FIVEHUNDREDPXLINK', '500px Link'))
+        ));
+
+        //
+        $f->addFieldToTab($mainTabTitle, $tglMisc);
+        $f->addFieldToTab($mainTabTitle, $tglAddress);
+        $f->addFieldToTab($mainTabTitle, $tglContact);
+        $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
+	}
+
+
+    // - - -
+
+
+    /**
+     * Add translated labels for the dropdown field
+     *
+     * @return array
+     */
+    protected function _typesNice() {
+        $enumValues = singleton("SiteConfig")->dbObject("Type")->enumValues();
+
+        $values = array();
+
+        foreach($enumValues as $enumValue) {
+            $values[$enumValue] = _t("SiteInfo.TYPE" . strtoupper($enumValue));
+        }
+
+        return $values;
+    }
+}
