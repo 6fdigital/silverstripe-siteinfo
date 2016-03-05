@@ -11,6 +11,7 @@ de:
     SURNAME: "Nachname"
     STREET: "Strasse"
     STREETNUMBER: "Hausnummer"
+    POBOX: "Postfach"
     ZIP: "Postleitzahl"
     CITY: "Stadt"
     COUNTRY: "Land"

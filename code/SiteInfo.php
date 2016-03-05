@@ -8,29 +8,30 @@
  */
 class SiteInfo extends DataExtension
 {
-	/**
-	 * 	Add some more fields to the base site config
-	 * 
-	 * 	@return	Array	A list of additional fields
-	 */
+    /**
+     *  Add some more fields to the base site config
+     * 
+     *  @return Array   A list of additional fields
+     */
     private static $db = array (
-		"Company1" => "Varchar(255)",
-		"Company2" => "Varchar(255)",
-		"Firstname" => "Varchar(255)",
-		"Surname" => "Varchar(255)",
-		"Street" => "Varchar(255)",
-		"StreetNumber" => "Varchar(255)",
-		"Zip" => "Varchar(255)",
-		"City" => "HTMLText",
-		"Country" => "Varchar(2)",
-		"Phone" => "Varchar(255)",
-		"Fax" => "Varchar(255)",
-		"Mobile" => "Varchar(255)",
-		"Email" => "Varchar(255)",
-		"Website" => "Varchar(255)",
+        "Company1" => "Varchar(255)",
+        "Company2" => "Varchar(255)",
+        "Firstname" => "Varchar(255)",
+        "Surname" => "Varchar(255)",
+        "Street" => "Varchar(255)",
+        "StreetNumber" => "Varchar(255)",
+        "POBox" => "Varchar(255)",
+        "Zip" => "Varchar(255)",
+        "City" => "HTMLText",
+        "Country" => "Varchar(2)",
+        "Phone" => "Varchar(255)",
+        "Fax" => "Varchar(255)",
+        "Mobile" => "Varchar(255)",
+        "Email" => "Varchar(255)",
+        "Website" => "Varchar(255)",
         "OpeningTimes" => "HTMLText",
-		"Vatnumber" => "Varchar(255)",
-		"CommercialRegister" => "Varchar(255)",
+        "Vatnumber" => "Varchar(255)",
+        "CommercialRegister" => "Varchar(255)",
         "Description1" => "HTMLText",
         "Description2" => "HTMLText",
         "FacebookLink" => "Varchar(255)",
@@ -45,21 +46,21 @@ class SiteInfo extends DataExtension
         "InstagramLink" => "Varchar(255)",
         "FivehundredPXLink" => "Varchar(255)",
         "Type" => "Enum('event, organization, person, localbusiness', 'organization')"
-	);
+    );
 
 
 
 
 
     // - - -
-	
-	
-	/**
-	 * 	Update the base fields with our added ones
-	 * 
-	 * 	@param $fields The list of existing fields
-	 */
-	public function updateCMSFields(FieldList $f) {
+    
+    
+    /**
+     *  Update the base fields with our added ones
+     * 
+     *  @param $fields The list of existing fields
+     */
+    public function updateCMSFields(FieldList $f) {
 
         //
         $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
@@ -84,6 +85,7 @@ class SiteInfo extends DataExtension
         $tglAddress = new ToggleCompositeField("Address", _t('SiteInfo.ADDRESSTABTITLE', 'Address'), array(
             new TextField("Street", _t('SiteInfo.STREET', 'Street')),
             new TextField("StreetNumber", _t('SiteInfo.STREETNUMBER', 'Steetnumber')),
+            new TextField("POBox", _t('SiteInfo.POBOX', 'PO Box')),
             new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')),
             new TextField("City", _t('SiteInfo.CITY', 'City')),
             new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'))
@@ -118,7 +120,7 @@ class SiteInfo extends DataExtension
         $f->addFieldToTab($mainTabTitle, $tglAddress);
         $f->addFieldToTab($mainTabTitle, $tglContact);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
-	}
+    }
 
 
     // - - -
