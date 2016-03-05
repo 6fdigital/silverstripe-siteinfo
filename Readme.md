@@ -13,18 +13,43 @@ A module for the Silverstripe CMS to provide further informations about the owne
   - Firstname
   - Surname
   - Street
-  - Streetnumber
+  - StreetNumber
+  - POBox
   - Zip
   - City
   - Country
   - Phone
-  - Telefax
+  - Fax
   - Mobile
   - Email
   - Website
-  - Opening times
+  - OpeningTimes
   - Vatnumber
-  - Commercial register
+  - CommercialRegister
+  - Description1
+  - Description2
+  - FacebookLink
+  - TwitterLink
+  - GooglePlusLink
+  - PinterestLink
+  - YoutubeLink
+  - VimeoLink
+  - XINGLink
+  - LinkedInLink
+  - TumblerLink
+  - InstagramLink
+  - FivehundredPXLink
+  - Type
+
+##Templates
+
+A few templates are included in the module:
+
+###SchemaOrgAdress
+Renders the the provided address informations with the schema.org structure.
+
+###About
+Renders a short about-us block by including the contents of the description fields as well as the address informations rendered with the schema.org structure.
 
 
 ##Related Modules
