@@ -2,7 +2,7 @@
 
 
 /**
- * 
+ *
  * @author marcokernler
  *
  */
@@ -10,8 +10,8 @@ class SiteInfo extends DataExtension
 {
     /**
      *  Add some more fields to the base site config
-     * 
-     *  @return Array   A list of additional fields
+     *
+     *  @var array   A list of additional fields
      */
     private static $db = array (
         "Company1" => "Varchar(255)",
@@ -50,23 +50,26 @@ class SiteInfo extends DataExtension
     );
 
 
-
+    /**
+     * @var array
+     */
+    private static $has_one = array(
+        "GenericImage" => "Image"
+    );
 
 
     // - - -
-    
-    
+
+
     /**
      *  Update the base fields with our added ones
-     * 
-     *  @param $fields The list of existing fields
+     *
+     *  @param $fields FieldList The list of existing fields
      */
     public function updateCMSFields(FieldList $f) {
 
         //
         $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
-
-
 
         //
         $tglMisc = new ToggleCompositeField("Misc", _t('SiteInfo.MISCTABTITLE', 'Misc'), array(
@@ -77,7 +80,8 @@ class SiteInfo extends DataExtension
             new TextField("Surname", _t('SiteInfo.SURNAME', 'Surname')),
             new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')),
             new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
-            new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Öffnungszeiten')),
+            new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
+            new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
             new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
         ));
