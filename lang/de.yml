@@ -41,6 +41,15 @@ de:
     TYPEORGANIZATION: "Organisation"
     TYPEPERSON: "Person"
     TYPELOCALBUSINESS: "Lokales Geschäft/Ort/Restaurant"
+    GENERICIMAGE: "Allgmeines Bild"
+    BANK_ACCOUNT_BANK_NAME: "Bank"
+    BANK_ACCOUNT_IBAN: "IBAN"
+    BANK_ACCOUNT_BIC: "BIC"
+  BankAccount:
+    SINGULAR_NAME: "Bankkonto"
+    PLURAL_NAME: "Bankkonten"
+    IBAN_CHECK_YOUR_INPUT: "Bitte prüfen Sie Ihre Eingabe. Die IBAN scheint nicht korrekt zu sein."
+    IBAN_DID_YOU_MEAN: "Meinten Sie vielleicht {suggestion} ?"
   SchemaOrgAddress:
     ADDRESS: "Adresse"
     PHONE: "Telefon"

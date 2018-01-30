@@ -1,16 +1,24 @@
 {
     "name": "denkfabrik-neue-medien/silverstripe-siteinfo",
-    "description": "A module for Silverstripe CMS to provide some further informations about the owner of a website.",
+    "description": "A module for Silverstripe CMS to provide further information about the owner of a website.",
     "type": "silverstripe-module",
-    "keywords": ["silverstripe", "contact", "contact information"],
+    "keywords": ["silverstripe", "contact", "contact information", "website information", "imprint", "legal"],
+    "homepage": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo",
+    "license": "MIT",
     "authors": [
         {
             "name": "Marco Kernler",
-            "email": "marco.kernler@denkfabrik-neueMedien.de"
+            "email": "marco.kernler@denkfabrik-neueMedien.de",
+            "homepage": "http://www.denkfabrik-neueMedien.de"
         }
     ],
+    "support": {
+        "issues": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo/issues",
+        "source": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo"
+    },
     "require": {
-        "silverstripe/cms": ">=3.2"
+        "silverstripe/cms": ">=3.2",
+        "globalcitizen/php-iban": "2.6.1"
     },
     "extra": {
         "installer-name": "siteinfo"
