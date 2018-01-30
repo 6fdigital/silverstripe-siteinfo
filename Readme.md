@@ -19,6 +19,8 @@ SilverStripe >= 3.2, < 4
 |Surname|||
 |Street|||
 |StreetNumber|||
+|Latitude|||
+|Longitude|||
 |POBox|||
 |Zip|||
 |City|||
@@ -31,6 +33,8 @@ SilverStripe >= 3.2, < 4
 |OpeningTimes|||
 |Vatnumber|||
 |CommercialRegister|||
+|GenericImage|||
+|Logo|||
 |Description1|||
 |Description2|||
 |FacebookLink|||
