@@ -2,7 +2,7 @@
 
 
 /**
- * 
+ *
  * @author marcokernler
  *
  */
@@ -10,16 +10,19 @@ class SiteInfo extends DataExtension
 {
     /**
      *  Add some more fields to the base site config
-     * 
-     *  @return Array   A list of additional fields
+     *
+     *  @var array   A list of additional fields
      */
     private static $db = array (
+        "Type" => "Enum('Event, Organization, Person, LocalBusiness', 'Organization')",
         "Company1" => "Varchar(255)",
         "Company2" => "Varchar(255)",
         "Firstname" => "Varchar(255)",
         "Surname" => "Varchar(255)",
         "Street" => "Varchar(255)",
         "StreetNumber" => "Varchar(255)",
+        "Latitude" => "Varchar(100)",
+        "Longitude" => "Varchar(100)",
         "POBox" => "Varchar(255)",
         "Zip" => "Varchar(255)",
         "City" => "HTMLText",
@@ -44,28 +47,38 @@ class SiteInfo extends DataExtension
         "LinkedInLink" => "Varchar(255)",
         "TumblerLink" => "Varchar(255)",
         "InstagramLink" => "Varchar(255)",
-        "FivehundredPXLink" => "Varchar(255)",
-        "Type" => "Enum('event, organization, person, localbusiness', 'organization')"
+        "FivehundredPXLink" => "Varchar(255)"
     );
 
 
+    /**
+     * @var array
+     */
+    private static $has_one = array(
+        "Logo" => "Image",
+        "GenericImage" => "Image"
+    );
 
+
+    /**
+     * @var array
+     */
+    private static $has_many = array(
+        "BankAccounts" => "BankAccount"
+    );
 
 
     // - - -
-    
-    
+
+
     /**
      *  Update the base fields with our added ones
-     * 
-     *  @param $fields The list of existing fields
+     *
+     *  @param $fields FieldList The list of existing fields
      */
     public function updateCMSFields(FieldList $f) {
-
         //
         $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
-
-
 
         //
         $tglMisc = new ToggleCompositeField("Misc", _t('SiteInfo.MISCTABTITLE', 'Misc'), array(
@@ -76,7 +89,9 @@ class SiteInfo extends DataExtension
             new TextField("Surname", _t('SiteInfo.SURNAME', 'Surname')),
             new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')),
             new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
-            new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Öffnungszeiten')),
+            new UploadField("Logo", _t('SiteInfo.LOGO', 'Logo')),
+            new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
+            new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
             new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
         ));
@@ -88,7 +103,9 @@ class SiteInfo extends DataExtension
             new TextField("POBox", _t('SiteInfo.POBOX', 'PO Box')),
             new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')),
             new TextField("City", _t('SiteInfo.CITY', 'City')),
-            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'))
+            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country')),
+            new TextField("Latitude", _t('SiteInfo.LATITUDE', 'Latitude')),
+            new TextField("Longitude", _t('SiteInfo.LONGITUDE', 'Longitude'))
         ));
 
         //
@@ -115,11 +132,28 @@ class SiteInfo extends DataExtension
             new TextField("FivehundredPXLink", _t('SiteInfo.FIVEHUNDREDPXLINK', '500px Link'))
         ));
 
+        // bank accounts config
+        $bankAccountsConfig = GridFieldConfig_RecordEditor::create();
+        $bankAccountsConfig->getComponentByType("GridFieldDataColumns")->setDisplayFields(array (
+            "BankName" => _t("SiteInfo.BANK_ACCOUNT_BANK_NAME","Bank Name"),
+            "IBAN" => _t("SiteInfo.BANK_ACCOUNT_IBAN","IBAN"),
+            "BIC" => _t("SiteInfo.BANK_ACCOUNT_BIC","BIC")
+        ));
+
+        // persons data grid
+        $bankAccountsField = new GridField (
+            "BankAccounts",
+            _t("BankAccount.PLURAL_NAME","Bank Accounts"),
+            $this->owner->BankAccounts(),
+            $bankAccountsConfig
+        );
+
         //
         $f->addFieldToTab($mainTabTitle, $tglMisc);
         $f->addFieldToTab($mainTabTitle, $tglAddress);
         $f->addFieldToTab($mainTabTitle, $tglContact);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
+        $f->addFieldToTab($mainTabTitle, $bankAccountsField);
     }
 
 

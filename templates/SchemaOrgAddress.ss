@@ -2,12 +2,15 @@
 
 Possible include vars:
 
+- HideLogo [1|0]
+- HideGenericImage [1|0]
 - HideCompany1 [1|0]
 - HideCompany2 [1|0]
 - HideStreetInfo [1|0]
 - HideZip [1|0]
 - HideCity [1|0]
 - HideCounty [1|0]
+- HideGeoInfo [1|0]
 - HidePhone [1|0]
 - HideFax [1|0]
 - HideEmail [1|0]
@@ -18,12 +21,24 @@ Possible include vars:
 
 <% with $SiteConfig %>
 
-    <div itemscope itemtype="http://schema.org/Organization">
+    <div itemscope itemtype="http://schema.org/{$Type}">
+
+        <% if $Logo && $HideLogo == "" && $Type != "Event" %>
+            <% with $Logo %>
+                <meta itemprop="logo" content="{$BaseHref}{$Filename}" />
+            <% end_with %>
+        <% end_if %>
+
+        <% if $GenericImage && $HideGenericImage == "" && $Type != "Organization" %>
+            <% with $GenericImage %>
+                <meta itemprop="image" content="{$BaseHref}{$Filename}" />
+            <% end_with %>
+        <% end_if %>
+
         <% if $Company1 && $HideCompany1 == "" %>
             <span itemprop="name">$Company1 <% if $Company2 && $HideCompany2 == 0 %>$Company2<% end_if %></span>
             <br><br>
         <% end_if %>
-
 
         <strong><%t SchemaOrgAddress.ADDRESS "Address" %>:</strong>
         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
@@ -40,6 +55,15 @@ Possible include vars:
                 <span itemprop="addressLocality">$City<% if $Country %><br> $Top.CountryNice<% end_if %></span>
             <% end_if %>
         </div>
+
+        <% if $Latitude && $Longitude && $HideGeoInfo == "" %>
+            <div itemtype="http://schema.org/GeoCoordinates" itemscope="" itemprop="geo">
+                <meta itemprop="latitude" content="$Latitude" />
+                <meta itemprop="longitude" content="$Longitude" />
+
+            </div>
+        <% end_if %>
+
         <br>
 
         <% if $Phone && $HidePhone == "" %>
