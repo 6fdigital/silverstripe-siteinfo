@@ -23,40 +23,42 @@ Possible include vars:
 
     <div itemscope itemtype="http://schema.org/{$Type}">
 
-        <% if $Logo && $HideLogo == "" && $Type != "Event" %>
+        <% if $Logo && $Top.HideLogo == "" && $Type != "Event" %>
             <% with $Logo %>
                 <meta itemprop="logo" content="{$BaseHref}{$Filename}" />
             <% end_with %>
         <% end_if %>
 
-        <% if $GenericImage && $HideGenericImage == "" && $Type != "Organization" %>
+        <% if $GenericImage && $Top.HideGenericImage == "" && $Type != "Organization" %>
             <% with $GenericImage %>
                 <meta itemprop="image" content="{$BaseHref}{$Filename}" />
             <% end_with %>
         <% end_if %>
 
-        <% if $Company1 && $HideCompany1 == "" %>
-            <span itemprop="name">$Company1 <% if $Company2 && $HideCompany2 == 0 %>$Company2<% end_if %></span>
+        <% if $Company1 && $Top.HideCompany1 == "" %>
+            <span itemprop="name">$Company1 <% if $Company2 && $Top.HideCompany2 == 0 %>$Company2<% end_if %></span>
             <br><br>
         <% end_if %>
 
-        <strong><%t SchemaOrgAddress.ADDRESS "Address" %>:</strong>
+        <% if $Top.HideStreetInfo == "" && $Top.HideZip == "" && $Top.HideCity == "" && $Top.HideCountry == "" %>
+            <strong><%t SchemaOrgAddress.ADDRESS "Address" %>:</strong>
+        <% end_if %>
         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            <% if $Street && $StreetNumber && $HideStreetInfo == "" %>
+            <% if $Street && $StreetNumber && $Top.HideStreetInfo == "" %>
                 <span itemprop="streetAddress">$Street $StreetNumber</span>
                 <br>
             <% end_if %>
 
-            <% if $Zip && $HideZip == "" %>
+            <% if $Zip && $Top.HideZip == "" %>
                 <span itemprop="postalCode">$Zip</span>
             <% end_if %>
 
-            <% if $City && $HideCity == "" %>
+            <% if $City && $Top.HideCity == "" %>
                 <span itemprop="addressLocality">$City<% if $Country %><br> $Top.CountryNice<% end_if %></span>
             <% end_if %>
         </div>
 
-        <% if $Latitude && $Longitude && $HideGeoInfo == "" %>
+        <% if $Latitude && $Longitude && $Top.HideGeoInfo == "" %>
             <div itemtype="http://schema.org/GeoCoordinates" itemscope="" itemprop="geo">
                 <meta itemprop="latitude" content="$Latitude" />
                 <meta itemprop="longitude" content="$Longitude" />
@@ -66,22 +68,22 @@ Possible include vars:
 
         <br>
 
-        <% if $Phone && $HidePhone == "" %>
+        <% if $Phone && $Top.HidePhone == "" %>
             <strong><%t SchemaOrgAddress.PHONE %>:</strong> <span itemprop="telephone">$Phone</span>
             <br>
         <% end_if %>
 
-        <% if $Fax && $HideFax == "" %>
+        <% if $Fax && $Top.HideFax == "" %>
             <strong><%t SchemaOrgAddress.FAX %>:</strong> <span itemprop="faxNumber">$Fax</span>
             <br>
         <% end_if %>
 
-        <% if $Email && $HideEmail == "" %>
+        <% if $Email && $Top.HideEmail == "" %>
             <strong><%t SchemaOrgAddress.EMAIL %>:</strong> <a href="$Email" itemprop="email">$Email</a>
             <br>
         <% end_if %>
 
-        <% if $Website && $HideWebsite == "" %>
+        <% if $Website && $Top.HideWebsite == "" %>
             <strong><%t SchemaOrgAddress.WEBSITE %>:</strong> <a href="$Website" itemprop="url">$Website</a>
         <% end_if %>
     </div>
