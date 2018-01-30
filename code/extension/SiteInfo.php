@@ -21,6 +21,8 @@ class SiteInfo extends DataExtension
         "Surname" => "Varchar(255)",
         "Street" => "Varchar(255)",
         "StreetNumber" => "Varchar(255)",
+        "Latitude" => "Varchar(100)",
+        "Longitude" => "Varchar(100)",
         "POBox" => "Varchar(255)",
         "Zip" => "Varchar(255)",
         "City" => "HTMLText",
@@ -99,7 +101,9 @@ class SiteInfo extends DataExtension
             new TextField("POBox", _t('SiteInfo.POBOX', 'PO Box')),
             new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')),
             new TextField("City", _t('SiteInfo.CITY', 'City')),
-            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'))
+            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country')),
+            new TextField("Latitude", _t('SiteInfo.LATITUDE', 'Latitude')),
+            new TextField("Longitude", _t('SiteInfo.LONGITUDE', 'Longitude'))
         ));
 
         //
