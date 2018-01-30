@@ -14,6 +14,7 @@ class SiteInfo extends DataExtension
      *  @var array   A list of additional fields
      */
     private static $db = array (
+        "Type" => "Enum('event, organization, person, localbusiness', 'organization')",
         "Company1" => "Varchar(255)",
         "Company2" => "Varchar(255)",
         "Firstname" => "Varchar(255)",
@@ -44,8 +45,7 @@ class SiteInfo extends DataExtension
         "LinkedInLink" => "Varchar(255)",
         "TumblerLink" => "Varchar(255)",
         "InstagramLink" => "Varchar(255)",
-        "FivehundredPXLink" => "Varchar(255)",
-        "Type" => "Enum('event, organization, person, localbusiness', 'organization')"
+        "FivehundredPXLink" => "Varchar(255)"
     );
 
 
@@ -54,6 +54,14 @@ class SiteInfo extends DataExtension
      */
     private static $has_one = array(
         "GenericImage" => "Image"
+    );
+
+
+    /**
+     * @var array
+     */
+    private static $has_many = array(
+        "BankAccounts" => "BankAccount"
     );
 
 
@@ -118,11 +126,28 @@ class SiteInfo extends DataExtension
             new TextField("FivehundredPXLink", _t('SiteInfo.FIVEHUNDREDPXLINK', '500px Link'))
         ));
 
+        // bank accounts config
+        $bankAccountsConfig = GridFieldConfig_RecordEditor::create();
+        $bankAccountsConfig->getComponentByType("GridFieldDataColumns")->setDisplayFields(array (
+            "BankName" => _t("SiteInfo.BANK_ACCOUNT_BANK_NAME","Bank Name"),
+            "IBAN" => _t("SiteInfo.BANK_ACCOUNT_IBAN","IBAN"),
+            "BIC" => _t("SiteInfo.BANK_ACCOUNT_BIC","BIC")
+        ));
+
+        // persons data grid
+        $bankAccountsField = new GridField (
+            "BankAccounts",
+            _t("BankAccount.PLURAL_NAME","Bank Accounts"),
+            $this->owner->BankAccounts(),
+            $bankAccountsConfig
+        );
+
         //
         $f->addFieldToTab($mainTabTitle, $tglMisc);
         $f->addFieldToTab($mainTabTitle, $tglAddress);
         $f->addFieldToTab($mainTabTitle, $tglContact);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
+        $f->addFieldToTab($mainTabTitle, $bankAccountsField);
     }
 
 
