@@ -46,7 +46,6 @@ SilverStripe >= 3.2, < 4
 |FivehundredPXLink|||
 |BankAccounts|Add multiple bank accounts|Bank Name, IBAN, BIC|
 
-## Related Modules
+## Related Module
 
-- [silverstripe-imprintpage](https://github.com/marcokernler/silverstripe-imprintpage)
 - [silverstripe-widget-contact](https://github.com/marcokernler/silverstripe-widget-contact)
