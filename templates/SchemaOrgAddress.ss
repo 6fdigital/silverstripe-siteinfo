@@ -2,6 +2,7 @@
 
 Possible include vars:
 
+- HideLogo [1|0]
 - HideGenericImage [1|0]
 - HideCompany1 [1|0]
 - HideCompany2 [1|0]
@@ -21,6 +22,12 @@ Possible include vars:
 <% with $SiteConfig %>
 
     <div itemscope itemtype="http://schema.org/{$Type}">
+
+        <% if $Logo && $HideLogo == "" && $Type != "Event" %>
+            <% with $Logo %>
+                <meta itemprop="logo" content="{$BaseHref}{$Filename}" />
+            <% end_with %>
+        <% end_if %>
 
         <% if $GenericImage && $HideGenericImage == "" && $Type != "Organization" %>
             <% with $GenericImage %>

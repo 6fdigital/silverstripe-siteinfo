@@ -43,6 +43,7 @@ de:
     TYPEORGANIZATION: "Organisation"
     TYPEPERSON: "Person"
     TYPELOCALBUSINESS: "Lokales Geschäft/Ort/Restaurant"
+    LOGO: "Logo"
     GENERICIMAGE: "Allgmeines Bild"
     BANK_ACCOUNT_BANK_NAME: "Bank"
     BANK_ACCOUNT_IBAN: "IBAN"

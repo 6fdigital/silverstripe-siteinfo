@@ -7,6 +7,7 @@ The following templates are coming with the module:
 ### SchemaOrgAdress
 Renders the the provided address information with the schema.org structure. With the following inlcude params you can hide different parts like the phone number or company name:
 
+- HideLogo [1/0]
 - HideGenericImage [1/0]
 - HideCompany1 [1/0]
 - HideCompany2 [1/0]

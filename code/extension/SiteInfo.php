@@ -55,6 +55,7 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_one = array(
+        "Logo" => "Image",
         "GenericImage" => "Image"
     );
 
@@ -88,6 +89,7 @@ class SiteInfo extends DataExtension
             new TextField("Surname", _t('SiteInfo.SURNAME', 'Surname')),
             new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')),
             new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
+            new UploadField("Logo", _t('SiteInfo.LOGO', 'Logo')),
             new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
             new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
