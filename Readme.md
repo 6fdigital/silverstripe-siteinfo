@@ -66,7 +66,6 @@ Renders a short about-us block by including the contents of the description fiel
 |Description2|||
 |FacebookLink|||
 |TwitterLink|||
-|TwitterUsername|||
 |GooglePlusLink|||
 |PinterestLink|||
 |YoutubeLink|||

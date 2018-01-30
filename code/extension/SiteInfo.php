@@ -36,7 +36,6 @@ class SiteInfo extends DataExtension
         "Description2" => "HTMLText",
         "FacebookLink" => "Varchar(255)",
         "TwitterLink" => "Varchar(255)",
-        "TwitterUsername" => "Varchar(255)",
         "GooglePlusLink" => "Varchar(255)",
         "PinterestLink" => "Varchar(255)",
         "YoutubeLink" => "Varchar(255)",
@@ -67,7 +66,6 @@ class SiteInfo extends DataExtension
      *  @param $fields FieldList The list of existing fields
      */
     public function updateCMSFields(FieldList $f) {
-
         //
         $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
 
@@ -109,7 +107,6 @@ class SiteInfo extends DataExtension
         $tglSocialMedia = new ToggleCompositeField("SocialMedia", _t('SiteInfo.SOCIALMEDIATABTITLE', 'Social Media'), array(
             new TextField("FacebookLink", _t('SiteInfo.FACEBOOKLINK', 'Facebook Link')),
             new TextField("TwitterLink", _t('SiteInfo.TWITTERLINK', 'Twitter Link')),
-            new TextField("TwitterUsername", _t('SiteInfo.TWITTERUSERNAME', 'Twitter Benutzername')),
             new TextField("GooglePlusLink", _t('SiteInfo.GOOGLEPLUSLINK', 'Google+ Link')),
             new TextField("PinterestLink", _t('SiteInfo.PINTERESTLINK', 'Pinterest Link')),
             new TextField("YoutubeLink", _t('SiteInfo.YOUTUBELINK', 'Youtube Link')),
