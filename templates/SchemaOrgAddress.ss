@@ -18,12 +18,18 @@ Possible include vars:
 
 <% with $SiteConfig %>
 
-    <div itemscope itemtype="http://schema.org/Organization">
+    <div itemscope itemtype="http://schema.org/{$Type}">
+
+        <% if $GenericImage && $HideGenericImage == "" %>
+            <% with $GenericImage %>
+                <meta itemprop="image" content="https://www.denkfabrik-neueMedien.de/{$Filename}" />
+            <% end_with %>
+        <% end_if %>
+
         <% if $Company1 && $HideCompany1 == "" %>
             <span itemprop="name">$Company1 <% if $Company2 && $HideCompany2 == 0 %>$Company2<% end_if %></span>
             <br><br>
         <% end_if %>
-
 
         <strong><%t SchemaOrgAddress.ADDRESS "Address" %>:</strong>
         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">

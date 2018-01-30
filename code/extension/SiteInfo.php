@@ -14,7 +14,7 @@ class SiteInfo extends DataExtension
      *  @var array   A list of additional fields
      */
     private static $db = array (
-        "Type" => "Enum('event, organization, person, localbusiness', 'organization')",
+        "Type" => "Enum('Event, Organization, Person, LocalBusiness', 'Organization')",
         "Company1" => "Varchar(255)",
         "Company2" => "Varchar(255)",
         "Firstname" => "Varchar(255)",
