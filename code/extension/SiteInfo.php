@@ -37,6 +37,7 @@ class SiteInfo extends DataExtension
         "CommercialRegister" => "Varchar(255)",
         "Description1" => "HTMLText",
         "Description2" => "HTMLText",
+        "FormPrivacyHint" => "HTMLText",
         "FacebookLink" => "Varchar(255)",
         "TwitterLink" => "Varchar(255)",
         "GooglePlusLink" => "Varchar(255)",
@@ -97,6 +98,7 @@ class SiteInfo extends DataExtension
             new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
             new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
+            new HtmlEditorField"FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms'))
         ));
 
         //
