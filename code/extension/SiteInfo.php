@@ -56,7 +56,10 @@ class SiteInfo extends DataExtension
      */
     private static $has_one = array(
         "Logo" => "Image",
-        "GenericImage" => "Image"
+        "GenericImage" => "Image",
+        "ImprintPage" => "SiteTree",
+        "PrivacyPage" => "SiteTree",
+        "TermsPage" => "SiteTree"
     );
 
 
@@ -118,6 +121,13 @@ class SiteInfo extends DataExtension
         ));
 
         //
+        $tglWebsite = new ToggleCompositeField("Website", _t('SiteInfo.WEBSITETABTITLE', 'Website'), array(
+            new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SiteTree"),
+            new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SiteTree"),
+            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SiteTree")
+        ));
+
+        //
         $tglSocialMedia = new ToggleCompositeField("SocialMedia", _t('SiteInfo.SOCIALMEDIATABTITLE', 'Social Media'), array(
             new TextField("FacebookLink", _t('SiteInfo.FACEBOOKLINK', 'Facebook Link')),
             new TextField("TwitterLink", _t('SiteInfo.TWITTERLINK', 'Twitter Link')),
@@ -152,6 +162,7 @@ class SiteInfo extends DataExtension
         $f->addFieldToTab($mainTabTitle, $tglMisc);
         $f->addFieldToTab($mainTabTitle, $tglAddress);
         $f->addFieldToTab($mainTabTitle, $tglContact);
+        $f->addFieldToTab($mainTabTitle, $tglWebsite);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
         $f->addFieldToTab($mainTabTitle, $bankAccountsField);
     }

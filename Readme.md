@@ -37,6 +37,9 @@ SilverStripe >= 3.2, < 4
 |Logo|||
 |Description1|||
 |Description2|||
+|ImprintPage|||
+|PrivacyPage|||
+|TermsPage|||
 |FacebookLink|||
 |TwitterLink|||
 |GooglePlusLink|||
