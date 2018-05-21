@@ -37,6 +37,8 @@ class SiteInfo extends DataExtension
         "CommercialRegister" => "Varchar(255)",
         "Description1" => "HTMLText",
         "Description2" => "HTMLText",
+        "FormPrivacyHint" => "HTMLText",
+        "CheckboxPrivacyLabel" => "HTMLText",
         "FacebookLink" => "Varchar(255)",
         "TwitterLink" => "Varchar(255)",
         "GooglePlusLink" => "Varchar(255)",
@@ -56,7 +58,10 @@ class SiteInfo extends DataExtension
      */
     private static $has_one = array(
         "Logo" => "Image",
-        "GenericImage" => "Image"
+        "GenericImage" => "Image",
+        "ImprintPage" => "SiteTree",
+        "PrivacyPage" => "SiteTree",
+        "TermsPage" => "SiteTree"
     );
 
 
@@ -97,6 +102,12 @@ class SiteInfo extends DataExtension
         ));
 
         //
+        $tglPrivacy = new ToggleCompositeField("Privacy", _t("SiteInfo.PRIVACY_TAB_TITLE", "Privacy"), array(
+            new HtmlEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
+            new HtmlEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
+        ));
+
+        //
         $tglAddress = new ToggleCompositeField("Address", _t('SiteInfo.ADDRESSTABTITLE', 'Address'), array(
             new TextField("Street", _t('SiteInfo.STREET', 'Street')),
             new TextField("StreetNumber", _t('SiteInfo.STREETNUMBER', 'Steetnumber')),
@@ -115,6 +126,13 @@ class SiteInfo extends DataExtension
             new TextField("Mobile", _t('SiteInfo.MOBILE', 'Mobile')),
             new TextField("Email", _t('SiteInfo.EMAIL', 'E-Mail')),
             new TextField("Website", _t('SiteInfo.WEBSITE', 'Website'))
+        ));
+
+        //
+        $tglWebsite = new ToggleCompositeField("Website", _t('SiteInfo.WEBSITETABTITLE', 'Website'), array(
+            new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SiteTree"),
+            new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SiteTree"),
+            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SiteTree")
         ));
 
         //
@@ -150,8 +168,10 @@ class SiteInfo extends DataExtension
 
         //
         $f->addFieldToTab($mainTabTitle, $tglMisc);
+        $f->addFieldToTab($mainTabTitle, $tglPrivacy);
         $f->addFieldToTab($mainTabTitle, $tglAddress);
         $f->addFieldToTab($mainTabTitle, $tglContact);
+        $f->addFieldToTab($mainTabTitle, $tglWebsite);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
         $f->addFieldToTab($mainTabTitle, $bankAccountsField);
     }
