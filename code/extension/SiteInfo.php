@@ -38,6 +38,7 @@ class SiteInfo extends DataExtension
         "Description1" => "HTMLText",
         "Description2" => "HTMLText",
         "FormPrivacyHint" => "HTMLText",
+        "CheckboxPrivacyLabel" => "HTMLText",
         "FacebookLink" => "Varchar(255)",
         "TwitterLink" => "Varchar(255)",
         "GooglePlusLink" => "Varchar(255)",
@@ -97,8 +98,13 @@ class SiteInfo extends DataExtension
             new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
             new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
-            new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2')),
-            new HtmlEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms'))
+            new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
+        ));
+
+        //
+        $tglPrivacy = new ToggleCompositeField("Privacy", _t("SiteInfo.PRIVACY_TAB_TITLE", "Privacy"), array(
+            new HtmlEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
+            new HtmlEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
         ));
 
         //
@@ -162,6 +168,7 @@ class SiteInfo extends DataExtension
 
         //
         $f->addFieldToTab($mainTabTitle, $tglMisc);
+        $f->addFieldToTab($mainTabTitle, $tglPrivacy);
         $f->addFieldToTab($mainTabTitle, $tglAddress);
         $f->addFieldToTab($mainTabTitle, $tglContact);
         $f->addFieldToTab($mainTabTitle, $tglWebsite);

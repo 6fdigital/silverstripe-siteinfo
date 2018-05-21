@@ -38,6 +38,7 @@ SilverStripe >= 3.2, < 4
 |Description1|||
 |Description2|||
 |FormPrivacyHint|||
+|CheckboxPrivacyLabel|||
 |ImprintPage|||
 |PrivacyPage|||
 |TermsPage|||

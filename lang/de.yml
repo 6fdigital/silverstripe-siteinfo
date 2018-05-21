@@ -2,6 +2,7 @@ de:
   SiteInfo:
     MODULETABTITLE: "Seitenbetreiber- Info's"
     MISCTABTITLE: "Allgemein"
+    PRIVACY_TAB_TITLE: "Datenschutz"
     ADDRESSTABTITLE: "Adresse"
     CONTACTTABTITLE: "Kontakt"
     WEBSITETABTITLE: "Webseite"
@@ -32,6 +33,7 @@ de:
     DESCRIPTION1: "Beschreibung 1"
     DESCRIPTION2: "Beschreibung 2"
     FORM_PRIVACY_HINT: "Datenschutz Hinweis Formular(e)"
+    CHECKBOX_PRIVACY_LABEL: "Labeltext Datenschutz Checkbox"
     FACEBOOKLINK: "Facebook Link"
     TWITTERLINK: "Twitter Link"
     TWITTERUSERNAME: "Twitter Benutzername"
