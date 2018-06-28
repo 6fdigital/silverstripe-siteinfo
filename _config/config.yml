@@ -6,10 +6,10 @@ After:
 # YAML configuration for SilverStripe
 # See http://doc.silverstripe.org/framework/en/topics/configuration
 # Caution: Indentation through two spaces, not tabs
-SiteConfig:
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - SiteInfo
+    - Dnkfbrknme\SiteInfo\Extension\SiteInfo
 
-Page_Controller:
+Dnkfbrknme\\SiteInfo\Page_Controller:
   extensions:
-    - SiteInfoController
+    - Dnkfbrknme\SiteInfo\Extension\SiteInfoController

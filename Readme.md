@@ -4,7 +4,7 @@ A module for the Silverstripe CMS to provide further informations about the owne
 
 ## Requirements
 
-SilverStripe >= 3.2, < 4
+SilverStripe >= 4
 
 ## Installation
     composer require denkfabrik-neue-medien/silverstripe-siteinfo

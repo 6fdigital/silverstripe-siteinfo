@@ -6,7 +6,16 @@
  * Time: 12:35
  */
 
-class BankAccount extends DataObject {
+namespace Dnkfbrknme\SiteInfo\Model;
+
+use \SilverStripe\ORM\DataObject;
+
+class BankAccount extends DataObject
+{
+    /**
+     * @var string
+     */
+    private static $table_name = "BankAccount";
 
     /**
      * @var array
@@ -22,7 +31,7 @@ class BankAccount extends DataObject {
      * @var array
      */
     private static $has_one = array(
-        "SiteConfig" => "SiteConfig"
+        "SiteConfig" => "SilverStripe\SiteConfig\SiteConfig"
     );
 
 
@@ -30,7 +39,7 @@ class BankAccount extends DataObject {
 
 
     /**
-     * @return ValidationResult
+     * @return \SilverStripe\ORM\ValidationResult
      */
     public function validate() {
         $result = parent::validate();
