@@ -7,6 +7,12 @@
  */
 
 
+use \SilverStripe\Core\Extension;
+use \SilverStripe\SiteConfig\SiteConfig;
+use \SilverStripe\i18n\i18n;
+
+
+
 /**
  * Page_Controller Extension
  *
@@ -46,4 +52,4 @@ class SiteInfoController extends Extension {
 
         return Zend_Locale::getTranslation($config->Country, "territory",  i18n::get_locale());
     }
-} 
+}

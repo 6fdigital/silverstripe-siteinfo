@@ -1,5 +1,21 @@
 <?php
 
+namespace Dnkfbrknme\SiteInfo\Extension;
+
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\TreeDropdownField;
+use \SilverStripe\ORM\DataExtension;
+use \SilverStripe\Forms\FieldList;
+use \SilverStripe\Forms\ToggleCompositeField;
+use \SilverStripe\Forms\DropdownField;
+use \SilverStripe\Forms\TextField;
+use SilverWare\Countries\Forms\CountryDropdownField;
+
 
 /**
  *
@@ -57,11 +73,11 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_one = array(
-        "Logo" => "Image",
-        "GenericImage" => "Image",
-        "ImprintPage" => "SiteTree",
-        "PrivacyPage" => "SiteTree",
-        "TermsPage" => "SiteTree"
+        "Logo" => "SilverStripe\Assets\Image",
+        "GenericImage" => "SilverStripe\Assets\Image",
+        "ImprintPage" => "SilverStripe\CMS\Model\SiteTree",
+        "PrivacyPage" => "SilverStripe\CMS\Model\SiteTree",
+        "TermsPage" => "SilverStripe\CMS\Model\SiteTree"
     );
 
 
@@ -69,7 +85,7 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_many = array(
-        "BankAccounts" => "BankAccount"
+        "BankAccounts" => "Dnkfbrknme\SiteInfo\Model\BankAccount"
     );
 
 
@@ -96,15 +112,15 @@ class SiteInfo extends DataExtension
             new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
             new UploadField("Logo", _t('SiteInfo.LOGO', 'Logo')),
             new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
-            new HtmlEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
-            new HtmlEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
-            new HtmlEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
+            new HTMLEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
+            new HTMLEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
+            new HTMLEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
         ));
 
         //
         $tglPrivacy = new ToggleCompositeField("Privacy", _t("SiteInfo.PRIVACY_TAB_TITLE", "Privacy"), array(
-            new HtmlEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
-            new HtmlEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
+            new HTMLEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
+            new HTMLEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
         ));
 
         //
@@ -114,7 +130,7 @@ class SiteInfo extends DataExtension
             new TextField("POBox", _t('SiteInfo.POBOX', 'PO Box')),
             new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')),
             new TextField("City", _t('SiteInfo.CITY', 'City')),
-            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country')),
+            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'), ["Deutschland" => "Deutschland"]),
             new TextField("Latitude", _t('SiteInfo.LATITUDE', 'Latitude')),
             new TextField("Longitude", _t('SiteInfo.LONGITUDE', 'Longitude'))
         ));
@@ -128,11 +144,12 @@ class SiteInfo extends DataExtension
             new TextField("Website", _t('SiteInfo.WEBSITE', 'Website'))
         ));
 
+
         //
         $tglWebsite = new ToggleCompositeField("Website", _t('SiteInfo.WEBSITETABTITLE', 'Website'), array(
-            new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SiteTree"),
-            new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SiteTree"),
-            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SiteTree")
+            new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree")
         ));
 
         //
@@ -150,21 +167,21 @@ class SiteInfo extends DataExtension
             new TextField("FivehundredPXLink", _t('SiteInfo.FIVEHUNDREDPXLINK', '500px Link'))
         ));
 
-        // bank accounts config
-        $bankAccountsConfig = GridFieldConfig_RecordEditor::create();
-        $bankAccountsConfig->getComponentByType("GridFieldDataColumns")->setDisplayFields(array (
-            "BankName" => _t("SiteInfo.BANK_ACCOUNT_BANK_NAME","Bank Name"),
-            "IBAN" => _t("SiteInfo.BANK_ACCOUNT_IBAN","IBAN"),
-            "BIC" => _t("SiteInfo.BANK_ACCOUNT_BIC","BIC")
-        ));
-
         // persons data grid
-        $bankAccountsField = new GridField (
+        $bankAccountsField = new GridField(
             "BankAccounts",
             _t("BankAccount.PLURAL_NAME","Bank Accounts"),
             $this->owner->BankAccounts(),
-            $bankAccountsConfig
+            GridFieldConfig_RecordEditor::create()
         );
+        $bankAccountsConfig = $bankAccountsField->getConfig();
+        $dataColumns = $bankAccountsConfig->getComponentByType(GridFieldDataColumns::class);
+
+        $dataColumns->setDisplayFields([
+            "BankName" => _t("SiteInfo.BANK_ACCOUNT_BANK_NAME","Bank Name"),
+            "IBAN" => _t("SiteInfo.BANK_ACCOUNT_IBAN","IBAN"),
+            "BIC" => _t("SiteInfo.BANK_ACCOUNT_BIC","BIC")
+        ]);
 
         //
         $f->addFieldToTab($mainTabTitle, $tglMisc);
@@ -173,6 +190,7 @@ class SiteInfo extends DataExtension
         $f->addFieldToTab($mainTabTitle, $tglContact);
         $f->addFieldToTab($mainTabTitle, $tglWebsite);
         $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
+        $f->addFieldToTab($mainTabTitle, new LiteralField("spacer", "<br/><hr/><br/>"));
         $f->addFieldToTab($mainTabTitle, $bankAccountsField);
     }
 
@@ -186,12 +204,12 @@ class SiteInfo extends DataExtension
      * @return array
      */
     protected function _typesNice() {
-        $enumValues = singleton("SiteConfig")->dbObject("Type")->enumValues();
+        $enumValues = singleton("SilverStripe\SiteConfig\SiteConfig")->dbObject("Type")->enumValues();
 
         $values = array();
 
         foreach($enumValues as $enumValue) {
-            $values[$enumValue] = _t("SiteInfo.TYPE" . strtoupper($enumValue));
+            $values[$enumValue] = _t("SiteInfo.TYPE" . strtoupper($enumValue), $enumValue);
         }
 
         return $values;

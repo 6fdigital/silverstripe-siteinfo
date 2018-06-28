@@ -1,7 +1,7 @@
 {
     "name": "denkfabrik-neue-medien/silverstripe-siteinfo",
     "description": "A module for Silverstripe CMS to provide further information about the owner of a website.",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "contact", "contact information", "website information", "imprint", "legal"],
     "homepage": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo",
     "license": "MIT",
@@ -17,8 +17,13 @@
         "source": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo"
     },
     "require": {
-        "silverstripe/cms": ">=3.2",
+        "silverstripe/cms": "^4",
         "globalcitizen/php-iban": "2.6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dnkfbrknme\\SiteInfo\\": "src/"
+        }
     },
     "extra": {
         "installer-name": "siteinfo"
