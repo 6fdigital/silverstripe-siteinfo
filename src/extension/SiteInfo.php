@@ -74,10 +74,12 @@ class SiteInfo extends DataExtension
      */
     private static $has_one = array(
         "Logo" => "SilverStripe\Assets\Image",
+        "LogoAlt" => "SilverStripe\Assets\Image",
         "GenericImage" => "SilverStripe\Assets\Image",
         "ImprintPage" => "SilverStripe\CMS\Model\SiteTree",
         "PrivacyPage" => "SilverStripe\CMS\Model\SiteTree",
-        "TermsPage" => "SilverStripe\CMS\Model\SiteTree"
+        "TermsPage" => "SilverStripe\CMS\Model\SiteTree",
+        "SitemapPage" => "SilverStripe\CMS\Model\SiteTree"
     );
 
 
@@ -111,6 +113,7 @@ class SiteInfo extends DataExtension
             new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')),
             new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
             new UploadField("Logo", _t('SiteInfo.LOGO', 'Logo')),
+            new UploadField("LogoAlt", _t('SiteInfo.LOGO_ALT', 'Logo Alt')),
             new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
             new HTMLEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HTMLEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
@@ -149,7 +152,8 @@ class SiteInfo extends DataExtension
         $tglWebsite = new ToggleCompositeField("Website", _t('SiteInfo.WEBSITETABTITLE', 'Website'), array(
             new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree")
+            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("SitemapPage", _t('SiteInfo.SITEMAP', 'Sitemap Page'), "SilverStripe\CMS\Model\SiteTree")
         ));
 
         //
