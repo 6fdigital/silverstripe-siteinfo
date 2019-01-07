@@ -35,6 +35,7 @@ SilverStripe >= 4
 |CommercialRegister|||
 |GenericImage|||
 |Logo|||
+|LogoAlt|||
 |Description1|||
 |Description2|||
 |FormPrivacyHint|||
@@ -42,6 +43,7 @@ SilverStripe >= 4
 |ImprintPage|||
 |PrivacyPage|||
 |TermsPage|||
+|SitemapPage|||
 |FacebookLink|||
 |TwitterLink|||
 |GooglePlusLink|||
