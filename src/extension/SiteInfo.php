@@ -3,11 +3,14 @@
 namespace Dnkfbrknme\SiteInfo\Extension;
 
 use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\FileField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridFieldDataColumns;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\TreeDropdownField;
 use \SilverStripe\ORM\DataExtension;
 use \SilverStripe\Forms\FieldList;
@@ -103,9 +106,41 @@ class SiteInfo extends DataExtension
     public function updateCMSFields(FieldList $f) {
         //
         $mainTabTitle = "Root." . _t('SiteInfo.MODULETABTITLE', 'Siteinfo');
+        $miscTabTitle = $mainTabTitle . "." . _t('SiteInfo.MISCTABTITLE', 'Misc');
+        $privacyTabTitle = $mainTabTitle . "." . _t("SiteInfo.PRIVACY_TAB_TITLE", "Privacy");
+        $addressTabTitle = $mainTabTitle . "." . _t('SiteInfo.ADDRESSTABTITLE', 'Address');
+        $contactTabTitle = $mainTabTitle . "." . _t('SiteInfo.CONTACTTABTITLE', 'Contact');
+        $websiteTabTitle = $mainTabTitle . "." . _t('SiteInfo.WEBSITETABTITLE', 'Website');
+        $socialMediaTabTitle = $mainTabTitle . "." . _t('SiteInfo.SOCIALMEDIATABTITLE', 'Social Media');
+        $bankTabTitle = $mainTabTitle . "." . _t("BankAccount.PLURAL_NAME","Bank Accounts");
 
         //
-        $tglMisc = new ToggleCompositeField("Misc", _t('SiteInfo.MISCTABTITLE', 'Misc'), array(
+        $f->addFieldToTab($miscTabTitle, new Tab(_t('SiteInfo.MISCTABTITLE', 'Misc')));
+        $f->addFieldToTab($addressTabTitle, new Tab( _t('SiteInfo.ADDRESSTABTITLE', 'Address')));
+        $f->addFieldToTab($contactTabTitle, new Tab(_t('SiteInfo.CONTACTTABTITLE', 'Contact')));
+        $f->addFieldToTab($websiteTabTitle, new Tab(_t('SiteInfo.WEBSITETABTITLE', 'Website')));
+        $f->addFieldToTab($socialMediaTabTitle, new Tab(_t('SiteInfo.SOCIALMEDIATABTITLE', 'Social Media')));
+        $f->addFieldToTab($bankTabTitle, new Tab(_t("BankAccount.PLURAL_NAME","Bank Accounts")));
+        $f->addFieldToTab($privacyTabTitle, new Tab(_t("SiteInfo.PRIVACY_TAB_TITLE", "Privacy")));
+
+        // persons data grid
+        $bankAccountsField = new GridField(
+            "BankAccounts",
+            _t("BankAccount.PLURAL_NAME","Bank Accounts"),
+            $this->owner->BankAccounts(),
+            GridFieldConfig_RecordEditor::create()
+        );
+        $bankAccountsConfig = $bankAccountsField->getConfig();
+        $dataColumns = $bankAccountsConfig->getComponentByType(GridFieldDataColumns::class);
+        //
+        $dataColumns->setDisplayFields([
+            "BankName" => _t("SiteInfo.BANK_ACCOUNT_BANK_NAME","Bank Name"),
+            "IBAN" => _t("SiteInfo.BANK_ACCOUNT_IBAN","IBAN"),
+            "BIC" => _t("SiteInfo.BANK_ACCOUNT_BIC","BIC")
+        ]);
+
+        //
+        $f->addFieldsToTab($miscTabTitle, [
             new DropdownField("Type", _t("SiteInfo.TYPE", "Type"), $this->_typesNice()),
             new TextField("Company1", _t('SiteInfo.COMPANY1', 'Company 1' )),
             new TextField("Company2", _t('SiteInfo.COMPANY2', 'Company 2' )),
@@ -119,16 +154,9 @@ class SiteInfo extends DataExtension
             new HTMLEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HTMLEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
             new HTMLEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
-        ));
 
-        //
-        $tglPrivacy = new ToggleCompositeField("Privacy", _t("SiteInfo.PRIVACY_TAB_TITLE", "Privacy"), array(
-            new HTMLEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
-            new HTMLEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
-        ));
-
-        //
-        $tglAddress = new ToggleCompositeField("Address", _t('SiteInfo.ADDRESSTABTITLE', 'Address'), array(
+        ]);
+        $f->addFieldsToTab($addressTabTitle, [
             new TextField("Street", _t('SiteInfo.STREET', 'Street')),
             new TextField("StreetNumber", _t('SiteInfo.STREETNUMBER', 'Steetnumber')),
             new TextField("POBox", _t('SiteInfo.POBOX', 'PO Box')),
@@ -137,29 +165,22 @@ class SiteInfo extends DataExtension
             new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'), ["Deutschland" => "Deutschland"]),
             new TextField("Latitude", _t('SiteInfo.LATITUDE', 'Latitude')),
             new TextField("Longitude", _t('SiteInfo.LONGITUDE', 'Longitude'))
-        ));
-
-        //
-        $tglContact = new ToggleCompositeField("Contact", _t('SiteInfo.CONTACTTABTITLE', 'Contact'), array(
+        ]);
+        $f->addFieldsToTab($contactTabTitle, [
             new TextField("Phone", _t('SiteInfo.PHONE', 'Phone')),
             new TextField("Fax", _t('SiteInfo.FAX', 'Fax')),
             new TextField("Mobile", _t('SiteInfo.MOBILE', 'Mobile')),
             new TextField("Email", _t('SiteInfo.EMAIL', 'E-Mail')),
             new TextField("Website", _t('SiteInfo.WEBSITE', 'Website'))
-        ));
-
-
-        //
-        $tglWebsite = new ToggleCompositeField("Website", _t('SiteInfo.WEBSITETABTITLE', 'Website'), array(
+        ]);
+        $f->addFieldsToTab($websiteTabTitle, [
             new TreeDropdownField("ContactPage", _t('SiteInfo.CONTACT_PAGE', 'Contact Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("SitemapPage", _t('SiteInfo.SITEMAP', 'Sitemap Page'), "SilverStripe\CMS\Model\SiteTree")
-        ));
-
-        //
-        $tglSocialMedia = new ToggleCompositeField("SocialMedia", _t('SiteInfo.SOCIALMEDIATABTITLE', 'Social Media'), array(
+        ]);
+        $f->addFieldsToTab($socialMediaTabTitle, [
             new TextField("FacebookLink", _t('SiteInfo.FACEBOOKLINK', 'Facebook Link')),
             new TextField("TwitterLink", _t('SiteInfo.TWITTERLINK', 'Twitter Link')),
             new TextField("GooglePlusLink", _t('SiteInfo.GOOGLEPLUSLINK', 'Google+ Link')),
@@ -171,33 +192,14 @@ class SiteInfo extends DataExtension
             new TextField("TumblerLink", _t('SiteInfo.TUMBLERLINK', 'Tumbler Link')),
             new TextField("InstagramLink", _t('SiteInfo.INSTAGRAMLINK', 'Instagram Link')),
             new TextField("FivehundredPXLink", _t('SiteInfo.FIVEHUNDREDPXLINK', '500px Link'))
-        ));
-
-        // persons data grid
-        $bankAccountsField = new GridField(
-            "BankAccounts",
-            _t("BankAccount.PLURAL_NAME","Bank Accounts"),
-            $this->owner->BankAccounts(),
-            GridFieldConfig_RecordEditor::create()
-        );
-        $bankAccountsConfig = $bankAccountsField->getConfig();
-        $dataColumns = $bankAccountsConfig->getComponentByType(GridFieldDataColumns::class);
-
-        $dataColumns->setDisplayFields([
-            "BankName" => _t("SiteInfo.BANK_ACCOUNT_BANK_NAME","Bank Name"),
-            "IBAN" => _t("SiteInfo.BANK_ACCOUNT_IBAN","IBAN"),
-            "BIC" => _t("SiteInfo.BANK_ACCOUNT_BIC","BIC")
         ]);
-
-        //
-        $f->addFieldToTab($mainTabTitle, $tglMisc);
-        $f->addFieldToTab($mainTabTitle, $tglPrivacy);
-        $f->addFieldToTab($mainTabTitle, $tglAddress);
-        $f->addFieldToTab($mainTabTitle, $tglContact);
-        $f->addFieldToTab($mainTabTitle, $tglWebsite);
-        $f->addFieldToTab($mainTabTitle, $tglSocialMedia);
-        $f->addFieldToTab($mainTabTitle, new LiteralField("spacer", "<br/><hr/><br/>"));
-        $f->addFieldToTab($mainTabTitle, $bankAccountsField);
+        $f->addFieldsToTab($bankTabTitle, [
+            $bankAccountsField
+        ]);
+        $f->addFieldsToTab($privacyTabTitle, [
+            new HTMLEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
+            new HTMLEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
+        ]);
     }
 
 
