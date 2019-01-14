@@ -76,6 +76,7 @@ class SiteInfo extends DataExtension
         "Logo" => "SilverStripe\Assets\Image",
         "LogoAlt" => "SilverStripe\Assets\Image",
         "GenericImage" => "SilverStripe\Assets\Image",
+        "ContactPage" => "SilverStripe\CMS\Model\SiteTree",
         "ImprintPage" => "SilverStripe\CMS\Model\SiteTree",
         "PrivacyPage" => "SilverStripe\CMS\Model\SiteTree",
         "TermsPage" => "SilverStripe\CMS\Model\SiteTree",
@@ -150,6 +151,7 @@ class SiteInfo extends DataExtension
 
         //
         $tglWebsite = new ToggleCompositeField("Website", _t('SiteInfo.WEBSITETABTITLE', 'Website'), array(
+            new TreeDropdownField("ContactPage", _t('SiteInfo.CONTACT_PAGE', 'Contact Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
             new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree"),
