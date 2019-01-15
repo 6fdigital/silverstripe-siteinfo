@@ -40,6 +40,7 @@ SilverStripe >= 4
 |Description2|||
 |FormPrivacyHint|||
 |CheckboxPrivacyLabel|||
+|ContactPage|||
 |ImprintPage|||
 |PrivacyPage|||
 |TermsPage|||
