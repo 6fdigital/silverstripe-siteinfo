@@ -39,17 +39,4 @@ class SiteInfoController extends Extension {
     public function About() {
         return $this->owner->renderWith("About");
     }
-
-
-    /**
-     * Get the full translated country name
-     *
-     * @return false|string
-     */
-    public function CountryNice() {
-        //
-        $config = SiteConfig::current_site_config();
-
-        return Zend_Locale::getTranslation($config->Country, "territory",  i18n::get_locale());
-    }
 }
