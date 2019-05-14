@@ -2,6 +2,7 @@
 
 namespace Dnkfbrknme\SiteInfo\Extension;
 
+use Locale;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\FileField;
 use SilverStripe\Forms\GridField\GridField;
@@ -12,6 +13,7 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\TreeDropdownField;
+use SilverStripe\i18n\i18n;
 use \SilverStripe\ORM\DataExtension;
 use \SilverStripe\Forms\FieldList;
 use \SilverStripe\Forms\ToggleCompositeField;
@@ -162,7 +164,7 @@ class SiteInfo extends DataExtension
             new TextField("POBox", _t('SiteInfo.POBOX', 'PO Box')),
             new TextField("Zip", _t('SiteInfo.ZIP', 'Zip')),
             new TextField("City", _t('SiteInfo.CITY', 'City')),
-            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country'), ["Deutschland" => "Deutschland"]),
+            new CountryDropdownField("Country", _t('SiteInfo.COUNTRY', 'Country')),
             new TextField("Latitude", _t('SiteInfo.LATITUDE', 'Latitude')),
             new TextField("Longitude", _t('SiteInfo.LONGITUDE', 'Longitude'))
         ]);
@@ -200,6 +202,14 @@ class SiteInfo extends DataExtension
             new HTMLEditorField("FormPrivacyHint", _t('SiteInfo.FORM_PRIVACY_HINT', 'Privacy Hint for your Forms')),
             new HTMLEditorField("CheckboxPrivacyLabel", _t('Siteinfo.CHECKBOX_PRIVACY_LABEL', 'Privacy Checkbox Label'))
         ]);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function CountryNice() {
+        return Locale::getDisplayRegion("-" . $this->owner->Country, i18n::get_locale());
     }
 
 
