@@ -176,11 +176,11 @@ class SiteInfo extends DataExtension
             new TextField("Website", _t('SiteInfo.WEBSITE', 'Website'))
         ]);
         $f->addFieldsToTab($websiteTabTitle, [
-            new TreeDropdownField("ContactPage", _t('SiteInfo.CONTACT_PAGE', 'Contact Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("ImprintPage", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("PrivacyPage", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("TermsPage", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("SitemapPage", _t('SiteInfo.SITEMAP', 'Sitemap Page'), "SilverStripe\CMS\Model\SiteTree")
+            new TreeDropdownField("ContactPageID", _t('SiteInfo.CONTACT_PAGE', 'Contact Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("ImprintPageID", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("PrivacyPageID", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("TermsPageID", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree"),
+            new TreeDropdownField("SitemapPageID", _t('SiteInfo.SITEMAP', 'Sitemap Page'), "SilverStripe\CMS\Model\SiteTree")
         ]);
         $f->addFieldsToTab($socialMediaTabTitle, [
             new TextField("FacebookLink", _t('SiteInfo.FACEBOOKLINK', 'Facebook Link')),
