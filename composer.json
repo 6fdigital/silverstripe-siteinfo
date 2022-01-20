@@ -18,7 +18,7 @@
     },
     "require": {
         "silverstripe/cms": "^4",
-        "globalcitizen/php-iban": "2.6.1",
+        "globalcitizen/php-iban": "^4",
         "silverware/countries": "^1.0"
     },
     "autoload": {
