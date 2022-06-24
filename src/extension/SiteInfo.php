@@ -20,7 +20,8 @@ use \SilverStripe\Forms\ToggleCompositeField;
 use \SilverStripe\Forms\DropdownField;
 use \SilverStripe\Forms\TextField;
 use SilverWare\Countries\Forms\CountryDropdownField;
-
+use SilverStripe\Assets\Image;
+use SilverStripe\CMS\Model\SiteTree;
 
 /**
  *
@@ -78,14 +79,14 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_one = array(
-        "Logo" => "SilverStripe\Assets\Image",
-        "LogoAlt" => "SilverStripe\Assets\Image",
-        "GenericImage" => "SilverStripe\Assets\Image",
-        "ContactPage" => "SilverStripe\CMS\Model\SiteTree",
-        "ImprintPage" => "SilverStripe\CMS\Model\SiteTree",
-        "PrivacyPage" => "SilverStripe\CMS\Model\SiteTree",
-        "TermsPage" => "SilverStripe\CMS\Model\SiteTree",
-        "SitemapPage" => "SilverStripe\CMS\Model\SiteTree"
+        "Logo" => Image::class,
+        "LogoAlt" => Image::class,
+        "GenericImage" => Image::class,
+        "ContactPage" => SiteTree::class,
+        "ImprintPage" => SiteTree::class,
+        "PrivacyPage" => SiteTree::class,
+        "TermsPage" => SiteTree::class,
+        "SitemapPage" => SiteTree::class,
     );
 
 
