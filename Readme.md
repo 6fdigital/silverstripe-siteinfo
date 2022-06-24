@@ -1,14 +1,14 @@
 # SiteInfo Module
 
-A module for the Silverstripe CMS to provide further informations about the owner of a website.
+A module for the Silverstripe CMS to provide further related website owner data.
 
 ## Requirements
 
 SilverStripe >= 4
 
 ## Installation
-    composer require denkfabrik-neue-medien/silverstripe-siteinfo
-    
+    composer require 6fdigital/silverstripe-siteinfo
+
 ## Supported Fields
 |Name|Description|Possible Values|
 |---|---|---|
@@ -57,7 +57,3 @@ SilverStripe >= 4
 |InstagramLink|||
 |FivehundredPXLink|||
 |BankAccounts|Add multiple bank accounts|Bank Name, IBAN, BIC|
-
-## Related Module
-
-- [silverstripe-widget-contact](https://github.com/marcokernler/silverstripe-widget-contact)

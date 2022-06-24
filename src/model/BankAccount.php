@@ -6,7 +6,7 @@
  * Time: 12:35
  */
 
-namespace Dnkfbrknme\SiteInfo\Model;
+namespace SixF\SiteInfo\Model;
 
 use \SilverStripe\ORM\DataObject;
 

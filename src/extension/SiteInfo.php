@@ -1,6 +1,6 @@
 <?php
 
-namespace Dnkfbrknme\SiteInfo\Extension;
+namespace SixF\SiteInfo\Extension;
 
 use Locale;
 use SilverStripe\AssetAdmin\Forms\UploadField;
@@ -93,7 +93,7 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_many = array(
-        "BankAccounts" => "Dnkfbrknme\SiteInfo\Model\BankAccount"
+        "BankAccounts" => "SixF\SiteInfo\Model\BankAccount"
     );
 
 
