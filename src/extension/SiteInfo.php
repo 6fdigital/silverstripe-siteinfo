@@ -1,6 +1,6 @@
 <?php
 
-namespace Dnkfbrknme\SiteInfo\Extension;
+namespace SixF\SiteInfo\Extension;
 
 use Locale;
 use SilverStripe\AssetAdmin\Forms\UploadField;
@@ -14,13 +14,16 @@ use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\i18n\i18n;
-use \SilverStripe\ORM\DataExtension;
-use \SilverStripe\Forms\FieldList;
-use \SilverStripe\Forms\ToggleCompositeField;
-use \SilverStripe\Forms\DropdownField;
-use \SilverStripe\Forms\TextField;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\ToggleCompositeField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\TextField;
 use SilverWare\Countries\Forms\CountryDropdownField;
-
+use SilverStripe\Assets\Image;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\SiteConfig\SiteConfig;
+use SixF\SiteInfo\Model\BankAccount;
 
 /**
  *
@@ -78,14 +81,14 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_one = array(
-        "Logo" => "SilverStripe\Assets\Image",
-        "LogoAlt" => "SilverStripe\Assets\Image",
-        "GenericImage" => "SilverStripe\Assets\Image",
-        "ContactPage" => "SilverStripe\CMS\Model\SiteTree",
-        "ImprintPage" => "SilverStripe\CMS\Model\SiteTree",
-        "PrivacyPage" => "SilverStripe\CMS\Model\SiteTree",
-        "TermsPage" => "SilverStripe\CMS\Model\SiteTree",
-        "SitemapPage" => "SilverStripe\CMS\Model\SiteTree"
+        "Logo" => Image::class,
+        "LogoAlt" => Image::class,
+        "GenericImage" => Image::class,
+        "ContactPage" => SiteTree::class,
+        "ImprintPage" => SiteTree::class,
+        "PrivacyPage" => SiteTree::class,
+        "TermsPage" => SiteTree::class,
+        "SitemapPage" => SiteTree::class,
     );
 
 
@@ -93,7 +96,7 @@ class SiteInfo extends DataExtension
      * @var array
      */
     private static $has_many = array(
-        "BankAccounts" => "Dnkfbrknme\SiteInfo\Model\BankAccount"
+        "BankAccounts" => BankAccount::class,
     );
 
 
@@ -176,11 +179,11 @@ class SiteInfo extends DataExtension
             new TextField("Website", _t('SiteInfo.WEBSITE', 'Website'))
         ]);
         $f->addFieldsToTab($websiteTabTitle, [
-            new TreeDropdownField("ContactPageID", _t('SiteInfo.CONTACT_PAGE', 'Contact Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("ImprintPageID", _t('SiteInfo.IMPRINT', 'Imprint Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("PrivacyPageID", _t('SiteInfo.PRIVACY', 'Privacy Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("TermsPageID", _t('SiteInfo.TERMS', 'Terms Page'), "SilverStripe\CMS\Model\SiteTree"),
-            new TreeDropdownField("SitemapPageID", _t('SiteInfo.SITEMAP', 'Sitemap Page'), "SilverStripe\CMS\Model\SiteTree")
+            new TreeDropdownField("ContactPageID", _t('SiteInfo.CONTACT_PAGE', 'Contact Page'), SiteTree::class),
+            new TreeDropdownField("ImprintPageID", _t('SiteInfo.IMPRINT', 'Imprint Page'), SiteTree::class),
+            new TreeDropdownField("PrivacyPageID", _t('SiteInfo.PRIVACY', 'Privacy Page'), SiteTree::class),
+            new TreeDropdownField("TermsPageID", _t('SiteInfo.TERMS', 'Terms Page'), SiteTree::class),
+            new TreeDropdownField("SitemapPageID", _t('SiteInfo.SITEMAP', 'Sitemap Page'), SiteTree::class),
         ]);
         $f->addFieldsToTab($socialMediaTabTitle, [
             new TextField("FacebookLink", _t('SiteInfo.FACEBOOKLINK', 'Facebook Link')),
@@ -222,7 +225,7 @@ class SiteInfo extends DataExtension
      * @return array
      */
     protected function _typesNice() {
-        $enumValues = singleton("SilverStripe\SiteConfig\SiteConfig")->dbObject("Type")->enumValues();
+        $enumValues = singleton(SiteConfig::class)->dbObject("Type")->enumValues();
 
         $values = array();
 

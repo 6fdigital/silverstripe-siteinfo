@@ -6,9 +6,10 @@
  * Time: 12:35
  */
 
-namespace Dnkfbrknme\SiteInfo\Model;
+namespace SixF\SiteInfo\Model;
 
 use \SilverStripe\ORM\DataObject;
+use SilverStripe\SiteConfig\SiteConfig;
 
 class BankAccount extends DataObject
 {
@@ -31,7 +32,7 @@ class BankAccount extends DataObject
      * @var array
      */
     private static $has_one = array(
-        "SiteConfig" => "SilverStripe\SiteConfig\SiteConfig"
+        "SiteConfig" => SiteConfig::class,
     );
 
 
