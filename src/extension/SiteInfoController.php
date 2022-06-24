@@ -6,6 +6,7 @@
  * Time: 00:12
  */
 
+namespace SixF\SiteInfo\Extension;
 
 use \SilverStripe\Core\Extension;
 use \SilverStripe\SiteConfig\SiteConfig;

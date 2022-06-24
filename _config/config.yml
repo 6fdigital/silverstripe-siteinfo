@@ -8,8 +8,8 @@ After:
 # Caution: Indentation through two spaces, not tabs
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - Dnkfbrknme\SiteInfo\Extension\SiteInfo
+    - SixF\SiteInfo\Extension\SiteInfo
 
-Dnkfbrknme\\SiteInfo\Page_Controller:
+SixF\\SiteInfo\Page_Controller:
   extensions:
-    - Dnkfbrknme\SiteInfo\Extension\SiteInfoController
+    - SixF\SiteInfo\Extension\SiteInfoController

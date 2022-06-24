@@ -1,29 +1,29 @@
 {
-    "name": "denkfabrik-neue-medien/silverstripe-siteinfo",
-    "description": "A module for Silverstripe CMS to provide further information about the owner of a website.",
+    "name": "6fdigital/silverstripe-siteinfo",
+    "description": "A module for the Silverstripe CMS to provide related website owner data",
     "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "contact", "contact information", "website information", "imprint", "legal"],
-    "homepage": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo",
+    "homepage": "https://github.com/6fdigital/silverstripe-siteinfo",
     "license": "MIT",
     "authors": [
         {
             "name": "Marco Kernler",
-            "email": "marco.kernler@denkfabrik-neueMedien.de",
-            "homepage": "http://www.denkfabrik-neueMedien.de"
+            "email": "marco.kernler@6f.digital",
+            "homepage": "http://www.6f,digital"
         }
     ],
     "support": {
-        "issues": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo/issues",
-        "source": "https://github.com/denkfabrik-neueMedien/silverstripe-siteinfo"
+        "issues": "https://github.com/6fdigital/silverstripe-siteinfo/issues",
+        "source": "https://github.com/6fdigital/silverstripe-siteinfo"
     },
     "require": {
         "silverstripe/cms": "^4",
-        "globalcitizen/php-iban": "2.6.1",
+        "globalcitizen/php-iban": "^4",
         "silverware/countries": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Dnkfbrknme\\SiteInfo\\": "src/"
+            "SixF\\SiteInfo\\": "src/"
         }
     },
     "extra": {
