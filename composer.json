@@ -9,7 +9,7 @@
         {
             "name": "Marco Kernler",
             "email": "marco.kernler@6f.digital",
-            "homepage": "http://www.6f,digital"
+            "homepage": "https://www.6f,digital"
         }
     ],
     "support": {
@@ -17,7 +17,7 @@
         "source": "https://github.com/6fdigital/silverstripe-siteinfo"
     },
     "require": {
-        "silverstripe/cms": "^4",
+        "silverstripe/cms": "^4 | ^5",
         "globalcitizen/php-iban": "^4",
         "silverware/countries": "^1.0"
     },
