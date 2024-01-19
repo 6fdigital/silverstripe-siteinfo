@@ -19,7 +19,7 @@
     "require": {
         "silverstripe/cms": "^4 | ^5",
         "globalcitizen/php-iban": "^4",
-        "silverware/countries": "^1.0"
+        "dynamic/silverstripe-country-dropdown-field": "^2"
     },
     "autoload": {
         "psr-4": {
