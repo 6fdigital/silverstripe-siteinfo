@@ -99,6 +99,12 @@ class SiteInfo extends DataExtension
         "BankAccounts" => BankAccount::class,
     );
 
+    private static $owns = [
+        "Logo",
+        "LogoAlt",
+        "GenericImage"
+    ];
+
 
     // - - -
 
