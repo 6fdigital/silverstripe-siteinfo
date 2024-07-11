@@ -73,7 +73,10 @@ class SiteInfo extends DataExtension
         "LinkedInLink" => "Varchar(255)",
         "TumblerLink" => "Varchar(255)",
         "InstagramLink" => "Varchar(255)",
-        "FivehundredPXLink" => "Varchar(255)"
+        "FivehundredPXLink" => "Varchar(255)",
+        "LogoAltText" => "Varchar(150)",
+        "LogoAltAltText" => "Varchar(150)",
+        "GenericImageAltText" => "Varchar(150)",
     );
 
 
@@ -160,8 +163,11 @@ class SiteInfo extends DataExtension
             new TextField("Vatnumber", _t('SiteInfo.VATNUMBER', 'Vat Number')),
             new TextField("CommercialRegister", _t('SiteInfo.COMMERCIALREGISTER', 'Commercial Register')),
             new UploadField("Logo", _t('SiteInfo.LOGO', 'Logo')),
+            new TextField("LogoAltText",_t('SiteInfo.LOGO_ALT_TEXT', 'Logo Alt- Text')),
             new UploadField("LogoAlt", _t('SiteInfo.LOGO_ALT', 'Logo Alt')),
-            new UploadField("GenericImage", _t('SiteInfo.GENERICIMAGE', 'Generic Image')),
+            new TextField("LogoAltAltText",_t('SiteInfo.LOGO_ALT_ALT_TEXT', 'Alt Logo Alt- Text')),
+            new UploadField("GenericImage", _t('SiteInfo.GENERIC_IMAGE', 'Generic Image')),
+            new TextField("GenericImageAltText",_t('SiteInfo.GENERIC_IMAGE_ALT_TEXT', 'Logo Alt- Text')),
             new HTMLEditorField("OpeningTimes", _t('SiteInfo.OPENINGTIMES', 'Opening Hours')),
             new HTMLEditorField("Description1", _t('SiteInfo.DESCRIPTION1', 'Description 1')),
             new HTMLEditorField("Description2", _t('SiteInfo.DESCRIPTION2', 'Description 2'))
